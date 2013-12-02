@@ -698,19 +698,6 @@ class Message
 					$sText = \MailSo\Base\Utils::ConvertEncoding($sText, $sTextCharset, \MailSo\Base\Enumerations\Charset::UTF_8);
 					$sText = \MailSo\Base\Utils::Utf8Clear($sText);
 
-					/** #####################################################################################
-					*   #					Decrypt & Verify	BEGIN			#
-					*/  #####################################################################################
-					$sText = strip_tags($sText);
-					$sText = substr($sText, 0, strlen($sText)-2);
-					$decUrl = "http://150.162.56.178:8080/decrypt/".$sText."/".$this->oFrom->ToString()."/".$this->oTo->ToString();
-					$sText = file_get_contents($decUrl);
-					$sText = base64_decode($sText);
-
-					/** #####################################################################################
-					*   #					Decrypt & Verify	END			#
-					*/  #####################################################################################
-
 					if ('text/html' === $oPart->ContentType())
 					{
 						$sHtmlParts[] = $sText;

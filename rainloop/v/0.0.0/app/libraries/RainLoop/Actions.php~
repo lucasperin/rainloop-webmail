@@ -3563,22 +3563,8 @@ class Actions
 		$aFoundedCids = array();
 		$aFoundedContentLocationUrls = array();
 		$mFoundDataURL = array();
-
-		/** #####################################################################################
-		*   #					Encrypt & Sign	BEGIN				#
-		*/  #####################################################################################
-		$sText = base64_encode($sText);
-		$encUrl = "http://150.162.56.178:8080/encrypt/".$sText."/".$sFrom."/".$sTo;
-		
-		$cText = file_get_contents($encUrl);		
-		
 		$oMessage->AddText($bTextIsHtml ?
-			\MailSo\Base\HtmlUtils::BuildHtml($cText, $aFoundedCids, $mFoundDataURL, $aFoundedContentLocationUrls) : $cText, $bTextIsHtml);
-		
-
-		/** #####################################################################################
-		*   #					Encrypt & Sign	END				#
-		*/  #####################################################################################
+			\MailSo\Base\HtmlUtils::BuildHtml($sText, $aFoundedCids, $mFoundDataURL, $aFoundedContentLocationUrls) : $sText, $bTextIsHtml);
 
 		if (is_array($aAttachments))
 		{
